@@ -5,7 +5,7 @@
     "data": {
       "propsData": {
         "avatarUrl": "/avatar2.jpg",
-        "avatarSize": 70,
+        "avatarSize": 90,
         "avatarRound": false,
         "name": "伍晁均",
         "jobTitle": "算法工程师",
@@ -66,7 +66,7 @@
     "id": "m6zy4r8v_xh8v",
     "data": {
       "propsData": {
-        "title": "自走科技（北京）有限公司 算法工程师",
+        "title": "自走科技（北京）有限公司——算法工程师",
         "dateRange": "2023/03 - 至今"
       },
       "styleData": {
@@ -80,7 +80,7 @@
     "id": "m6zy5ayd_2lcd",
     "data": {
       "propsData": {
-        "content": "<h3><strong>1. 六轴机械臂视觉伺服控制</strong></h3><hr><p><strong>项目描述</strong>：基于二维码定位的视觉伺服，控制机械臂在 1 分钟内完成一棵树的割胶任务。</p><ul><li><p><strong>视觉伺服控制：</strong>利用 Apriltag 和 OpenCV 进行二维码位姿解算，结合 Moveit 规划机械臂路径，使得机械臂在规避场景障碍的同时到达目标位置，并对机械臂割胶姿态进行优化。</p></li><li><p><strong>重建机械臂 URDF 文件及坐标系：</strong>依据 DH 表和 Matlab 计算矫正机械臂末端位姿信息。</p></li></ul><h3><strong>2. 六轴机械臂激光伺服控制</strong></h3><hr><p><strong>项目描述</strong>：负责激光伺服控制项目，协同激光传感器实现割胶刀沿割痕自主割胶。</p><ul><li><p><strong>手眼标定</strong>：采集相关的数据，通过标定算法对传感器和 TCP 的位姿变化关系进行标定。</p></li><li><p><strong>轨迹规划</strong>：采用三次样条插值算法对离散点插值补全，得到贴合割痕的轨迹。</p></li><li><p><strong>通讯模块</strong>：构建TCP通讯模块，以满足传感器和机械臂之间的8ms的控制频率需求。</p></li></ul><h3><strong>3. 履带机器人的导航定位与建图</strong></h3><hr><p><strong>项目描述</strong>：利用 cartographer 对现场进行导航定位与建图，实现机器人在胶园内的自主导航功能。</p><ul><li><p><strong>建图</strong>：建图时记录 IMU 和激光雷达数据生成地图，并按需修改。</p></li><li><p><strong>定位</strong>：定位中通过数据进行位姿估计，将控制误差控制在 30cm 以内。</p></li><li><p><strong>导航</strong>：导航采用 A * 全局路径规划和 DWA、MPC 局部路径规划算法。</p></li></ul><h3><strong>4. 基于模仿学习的六轴机械臂控制</strong></h3><hr><p><strong>项目描述</strong>：基于 Aloha 的框架，在自行设计的 6 轴机械臂上实现挂件的挂载动作。</p><ul><li><p><strong>模仿学习的仿真环境搭建</strong>：搭建 ROS+Mujoco 仿真环境，进行基本动作仿真测试与训练。</p></li><li><p><strong>机械臂夹取动作的训练</strong>：采集模仿端数据，与预训练动作联合训练，使机械臂能完成挂载动作。</p></li></ul>"
+        "content": "<h3><strong>1. 六轴机械臂视觉伺服控制</strong></h3><hr><p><strong>项目描述</strong>：基于二维码定位的视觉伺服，控制机械臂在 1 分钟内完成一棵树的割胶任务。</p><ul><li><p><strong>视觉伺服控制：</strong>利用 Apriltag 和 OpenCV 进行二维码位姿解算，结合 Moveit 规划机械臂路径，使得机械臂在规避场景障碍的同时到达目标位置，并对机械臂割胶姿态进行优化。</p></li><li><p><strong>重建机械臂 URDF 文件及坐标系：</strong>依据 DH 表和 Matlab 计算矫正机械臂末端位姿信息。</p></li></ul><h3><strong>2. 六轴机械臂激光伺服控制</strong></h3><hr><p><strong>项目描述</strong>：负责激光伺服控制项目，协同激光传感器实现割胶刀沿割痕自主割胶。</p><ul><li><p><strong>手眼标定</strong>：采集相关的数据，通过标定算法对传感器和 TCP 的位姿变化关系进行标定。</p></li><li><p><strong>轨迹规划</strong>：采用三次样条插值算法对离散点插值补全，得到贴合割痕的轨迹。</p></li><li><p><strong>通讯模块</strong>：构建 TCP 通讯模块，以满足传感器和机械臂之间的 8ms 的控制频率需求。</p></li></ul><h3><strong>3. 履带机器人的导航定位与建图</strong></h3><hr><p><strong>项目描述</strong>：利用 cartographer 对现场进行导航定位与建图，实现机器人在胶园内的自主导航功能。</p><ul><li><p><strong>建图</strong>：建图时记录 IMU 和激光雷达数据生成地图，并按需修改。</p></li><li><p><strong>定位</strong>：定位中通过数据进行位姿估计，将控制误差控制在 30cm 以内。</p></li><li><p><strong>导航</strong>：导航采用 A * 全局路径规划和 DWA、MPC 局部路径规划算法。</p></li></ul><h3><strong>4. 基于模仿学习的六轴机械臂控制</strong></h3><hr><p><strong>项目描述</strong>：基于 Aloha 的框架，在自行设计的 6 轴机械臂上实现挂件的挂载动作。</p><ul><li><p><strong>模仿学习的仿真环境搭建</strong>：搭建 ROS+Mujoco 仿真环境，进行基本动作仿真测试与训练。</p></li><li><p><strong>机械臂夹取动作的训练</strong>：采集模仿端数据，与预训练动作联合训练，使机械臂完成挂载动作。</p></li></ul>"
       },
       "styleData": {
         "marginTop": 0,
@@ -106,7 +106,7 @@
     "id": "m5nh7g2t_xcji",
     "data": {
       "propsData": {
-        "title": "二十届 RoboMaster 机甲大师赛 算法组组长 / 步兵组算法负责人",
+        "title": "二十届 RoboMaster 机甲大师赛——算法组组长 / 步兵组算法负责人",
         "dateRange": "2020/09 - 2021/06"
       },
       "styleData": {
@@ -173,7 +173,7 @@
     "id": "m6zy0fun_giri",
     "data": {
       "propsData": {
-        "content": "<ul><li><p><strong>感知工具</strong>：使用过工业摄像头、双目深度摄像头等传感器，熟悉摄像头标定，在 2D 机器人感知领域经验丰富，熟悉雷达、激光传感器应用。</p></li><li><p><strong>研发工具</strong>：熟悉 Linux / C++ / Python / OpenCV / ROS / Git 及场景相关的可视化和测试软件。</p></li><li><p><strong>工程经验</strong>：擅长文档总结，对学习内容和项目过程进行详细记录，定期整理。具备快速学习能力，采用快速迭代方式熟悉新接手项目。</p></li><li><p><strong>项目开源仓库</strong>：<a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://github.com/wildwolf-team/WolfVision.git\">https://github.com/wildwolf-team/WolfVision.git</a></p></li></ul>"
+        "content": "<ul><li><p><strong>感知工具</strong>：使用过工业摄像头、双目深度摄像头等传感器，熟悉摄像头标定，在 2D 机器人感知领域经验丰富，熟悉雷达、激光传感器应用。</p></li><li><p><strong>研发工具</strong>：熟悉 Linux / C++ / Python / OpenCV / ROS / Git 及场景相关的可视化和测试软件。</p></li><li><p><strong>工程经验</strong>：擅长文档总结，对学习内容和项目过程进行详细记录，定期整理。具备快速学习能力，快速迭代并熟悉新接手项目。</p></li><li><p><strong>项目开源仓库</strong>：<a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://github.com/wildwolf-team/WolfVision.git\">https://github.com/wildwolf-team/WolfVision.git</a></p></li></ul>"
       },
       "styleData": {
         "marginTop": 0,
