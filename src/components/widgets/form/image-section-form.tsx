@@ -1,41 +1,48 @@
-import { Input } from '@/components/ui/input.tsx'
-import { Slider } from '@/components/ui/slider'
-import type { ImageSectionData } from '@/components/widgets/widgets-type.d.ts'
-import { MAX_IMAGE_BR, MAX_IMAGE_SIZE, MIN_IMAGE_BR, MIN_IMAGE_SIZE } from '@/const/dom.ts'
-import type { ChangeEvent } from 'react'
+import { Button } from '#ui/button'
+import { Input } from '#ui/input'
+import { Slider } from '#ui/slider'
+import type { IImageSectionData } from '#widgets/types'
+import { WIDGET_CONSTRAINTS } from '#widgets/constraints'
+import { Upload } from 'lucide-react'
+import { useRef, type ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
+import invariant from 'tiny-invariant'
 
-const ImageSectionForm = ({
-  data,
+type PropsData = IImageSectionData['propsData']
+
+export function ImageSectionForm({
+  propsData,
   onChange,
 }: {
-  data: ImageSectionData
-  onChange: (value: ImageSectionData) => void
-}) => {
+  propsData: PropsData
+  onChange: (value: PropsData) => void
+}) {
   const { t } = useTranslation()
-  const { propsData } = data
   const { url, imageSize, borderRadius } = propsData
 
-  const handleEventChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-
+  function handleChange<K extends keyof PropsData>(name: K, value: PropsData[K]) {
     onChange({
-      ...data,
-      propsData: {
-        ...propsData,
-        [name]: value,
-      },
+      ...propsData,
+      [name]: value,
     })
   }
 
-  const handleValueChange = (name: keyof ImageSectionData['propsData'], value: string | number) => {
-    onChange({
-      ...data,
-      propsData: {
-        ...propsData,
-        [name]: Number(value),
-      },
-    })
+  // upload local image
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
+  const handleClickUpload = () => {
+    invariant(fileInputRef.current)
+    fileInputRef.current.click()
+  }
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const objectUrl = URL.createObjectURL(file)
+      handleChange('url', objectUrl)
+      // revoke old object url to avoid memory leak
+      if (propsData.url.startsWith('blob:')) {
+        URL.revokeObjectURL(propsData.url)
+      }
+    }
   }
 
   return (
@@ -45,12 +52,29 @@ const ImageSectionForm = ({
         <div className="form-label">
           <span>{t('form.imageUrl')}</span>
         </div>
-        <Input
-          name="url"
-          value={url}
-          placeholder={t('form.enterImageUrl')}
-          onChange={handleEventChange}
-        />
+        <div className="flex items-center gap-2">
+          <Input
+            value={url}
+            placeholder={t('form.enterImageUrl')}
+            onChange={e => handleChange('url', e.target.value)}
+          />
+          {/* upload local image */}
+          <Button
+            className="shrink-0"
+            variant="outline"
+            size="icon"
+            onClick={handleClickUpload}
+          >
+            <Upload />
+          </Button>
+          <input
+            type="file"
+            ref={fileInputRef}
+            className="hidden"
+            accept="image/*"
+            onChange={handleFileChange}
+          />
+        </div>
       </div>
       {/* Image Size */}
       <div>
@@ -59,20 +83,18 @@ const ImageSectionForm = ({
         </div>
         <div className="flex items-center">
           <Input
-            className="mr-4 w-32 shrink-0"
-            name="imageSize"
+            className="mr-2 w-32 shrink-0"
             type="number"
-            min={MIN_IMAGE_SIZE}
-            max={MAX_IMAGE_SIZE}
+            min={WIDGET_CONSTRAINTS.imageSection.sizePercent.min}
+            max={WIDGET_CONSTRAINTS.imageSection.sizePercent.max}
             value={imageSize}
-            onChange={e => handleValueChange('imageSize', e.target.value)}
+            onChange={e => handleChange('imageSize', Number(e.target.value))}
           />
           <Slider
+            min={WIDGET_CONSTRAINTS.imageSection.sizePercent.min}
+            max={WIDGET_CONSTRAINTS.imageSection.sizePercent.max}
             value={[imageSize]}
-            min={MIN_IMAGE_SIZE}
-            max={MAX_IMAGE_SIZE}
-            step={1}
-            onValueChange={val => handleValueChange('imageSize', val[0])}
+            onValueChange={val => handleChange('imageSize', val[0])}
           />
         </div>
       </div>
@@ -83,25 +105,21 @@ const ImageSectionForm = ({
         </div>
         <div className="flex items-center">
           <Input
-            className="mr-4 w-32 shrink-0"
+            className="mr-2 w-32 shrink-0"
             type="number"
-            name="borderRadius"
+            min={WIDGET_CONSTRAINTS.imageSection.borderRadius.min}
+            max={WIDGET_CONSTRAINTS.imageSection.borderRadius.max}
             value={borderRadius}
-            min={MIN_IMAGE_BR}
-            max={MAX_IMAGE_BR}
-            onChange={e => handleValueChange('borderRadius', e.target.value)}
+            onChange={e => handleChange('borderRadius', Number(e.target.value))}
           />
           <Slider
+            min={WIDGET_CONSTRAINTS.imageSection.borderRadius.min}
+            max={WIDGET_CONSTRAINTS.imageSection.borderRadius.max}
             value={[borderRadius]}
-            min={MIN_IMAGE_BR}
-            max={MAX_IMAGE_BR}
-            step={1}
-            onValueChange={val => handleValueChange('borderRadius', val[0])}
+            onValueChange={val => handleChange('borderRadius', val[0])}
           />
         </div>
       </div>
     </div>
   )
 }
-
-export { ImageSectionForm }

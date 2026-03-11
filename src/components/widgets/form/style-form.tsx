@@ -1,29 +1,20 @@
-import { Input } from '@/components/ui/input.tsx'
-import { Slider } from '@/components/ui/slider'
-import type { StyleData } from '@/components/widgets/widgets-type'
-import { MAX_MARGIN_VAL, MIN_MARGIN_VAL } from '@/const/dom.ts'
-import type { ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { Input } from '#ui/input'
+import { Slider } from '#ui/slider'
+import type { IStyleData } from '#widgets/types'
+import { WIDGET_CONSTRAINTS } from '#widgets/constraints'
+
 interface StyleFormProps {
-  styleData: StyleData
-  onStyleChange: (styleData: StyleData) => void
+  styleData: IStyleData
+  onChange: (styleData: IStyleData) => void
 }
 
-function StyleForm({ styleData, onStyleChange }: StyleFormProps) {
+export function StyleForm({ styleData, onChange }: StyleFormProps) {
   const { t } = useTranslation()
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-
-    onStyleChange({
-      ...styleData,
-      [name]: Number(value) || 0,
-    })
-  }
-
-  const handleSliderChange = (name: string, value: number) => {
-    onStyleChange({
+  function handleChange<K extends keyof IStyleData>(name: K, value: IStyleData[K]) {
+    onChange({
       ...styleData,
       [name]: value,
     })
@@ -37,19 +28,18 @@ function StyleForm({ styleData, onStyleChange }: StyleFormProps) {
         </div>
         <div className="flex items-center">
           <Input
-            className="mr-4 w-32 shrink-0"
-            name="marginTop"
+            className="mr-2 w-32 shrink-0"
             type="number"
-            min={MIN_MARGIN_VAL}
-            max={MAX_MARGIN_VAL}
+            min={WIDGET_CONSTRAINTS.style.margin.min}
+            max={WIDGET_CONSTRAINTS.style.margin.max}
             value={styleData.marginTop}
-            onChange={handleInputChange}
+            onChange={e => handleChange('marginTop', Number(e.target.value))}
           />
           <Slider
+            min={WIDGET_CONSTRAINTS.style.margin.min}
+            max={WIDGET_CONSTRAINTS.style.margin.max}
             value={[styleData.marginTop]}
-            max={MAX_MARGIN_VAL}
-            step={1}
-            onValueChange={val => handleSliderChange('marginTop', val[0])}
+            onValueChange={value => handleChange('marginTop', value[0])}
           />
         </div>
       </li>
@@ -59,24 +49,21 @@ function StyleForm({ styleData, onStyleChange }: StyleFormProps) {
         </div>
         <div className="flex items-center">
           <Input
-            className="mr-4 w-32 shrink-0"
-            name="marginBottom"
+            className="mr-2 w-32 shrink-0"
             type="number"
-            min={MIN_MARGIN_VAL}
-            max={MAX_MARGIN_VAL}
+            min={WIDGET_CONSTRAINTS.style.margin.min}
+            max={WIDGET_CONSTRAINTS.style.margin.max}
             value={styleData.marginBottom}
-            onChange={handleInputChange}
+            onChange={e => handleChange('marginBottom', Number(e.target.value))}
           />
           <Slider
+            min={WIDGET_CONSTRAINTS.style.margin.min}
+            max={WIDGET_CONSTRAINTS.style.margin.max}
             value={[styleData.marginBottom]}
-            max={MAX_MARGIN_VAL}
-            step={1}
-            onValueChange={val => handleSliderChange('marginBottom', val[0])}
+            onValueChange={value => handleChange('marginBottom', value[0])}
           />
         </div>
       </li>
     </ul>
   )
 }
-
-export { StyleForm }

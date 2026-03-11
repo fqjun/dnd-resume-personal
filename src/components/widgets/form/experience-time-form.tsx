@@ -1,57 +1,51 @@
-import { Input } from '@/components/ui/input.tsx'
-import type { ExperienceTimeData } from '@/components/widgets/widgets-type.d.ts'
-import type { ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 
-const ExperienceTimeForm = ({
-  data,
+import { Input } from '#ui/input'
+import type { IExperienceTimeData } from '#widgets/types'
+
+type PropsData = IExperienceTimeData['propsData']
+
+export function ExperienceTimeForm({
+  propsData,
   onChange,
 }: {
-  data: ExperienceTimeData
-  onChange: (value: ExperienceTimeData) => void
-}) => {
+  propsData: PropsData
+  onChange: (value: PropsData) => void
+}) {
   const { t } = useTranslation()
-  const { propsData } = data
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-
+  function handleChange<K extends keyof PropsData>(name: K, value: PropsData[K]) {
     onChange({
-      ...data,
-      propsData: {
-        ...propsData,
-        [name]: value,
-      },
+      ...propsData,
+      [name]: value,
     })
   }
 
   return (
     <div>
+      {/* Experience Content */}
       <div>
         <div className="form-label">
           <span>{t('form.experienceContent')}</span>
         </div>
         <Input
-          name="title"
           value={propsData.title}
           placeholder={t('form.enterExperience')}
-          onChange={handleChange}
+          onChange={e => handleChange('title', e.target.value)}
         />
       </div>
 
+      {/* Time Range */}
       <div>
         <div className="form-label">
           <span>{t('form.timeRange')}</span>
         </div>
         <Input
-          name="dateRange"
           value={propsData.dateRange}
           placeholder={t('form.enterTimeRange')}
-          onChange={handleChange}
+          onChange={e => handleChange('dateRange', e.target.value)}
         />
       </div>
     </div>
   )
 }
-
-export { ExperienceTimeForm }

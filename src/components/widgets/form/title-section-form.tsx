@@ -1,27 +1,23 @@
-import { Input } from '@/components/ui/input.tsx'
-import type { TitleSectionData } from '@/components/widgets/widgets-type.d.ts'
-import type { ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 
-const TitleSectionForm = ({
-  data,
+import { Input } from '#ui/input'
+import type { ITitleSectionData } from '#widgets/types'
+
+type PropsData = ITitleSectionData['propsData']
+
+export function TitleSectionForm({
+  propsData,
   onChange,
 }: {
-  data: TitleSectionData
-  onChange: (value: TitleSectionData) => void
-}) => {
+  propsData: PropsData
+  onChange: (value: PropsData) => void
+}) {
   const { t } = useTranslation()
-  const { propsData } = data
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-
+  function handleChange<K extends keyof PropsData>(name: K, value: PropsData[K]) {
     onChange({
-      ...data,
-      propsData: {
-        ...propsData,
-        [name]: value,
-      },
+      ...propsData,
+      [name]: value,
     })
   }
 
@@ -33,14 +29,11 @@ const TitleSectionForm = ({
           <span>{t('form.titleContent')}</span>
         </div>
         <Input
-          name="title"
           value={propsData.title}
           placeholder={t('form.enterTitle')}
-          onChange={handleChange}
+          onChange={e => handleChange('title', e.target.value)}
         />
       </div>
     </div>
   )
 }
-
-export { TitleSectionForm }

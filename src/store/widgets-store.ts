@@ -1,70 +1,43 @@
-import { widgetsSchema } from '@/components/widgets/widgets-schema.ts'
-import type { WidgetNode } from '@/components/widgets/widgets-type.d.ts'
-import { createDefaultData } from '@/components/widgets/widgets-util.tsx'
-import { S_N_WIDGET } from '@/const/storage.ts'
-import i18n from '@/i18n'
-import { storage } from '@/lib/utils.ts'
-import { toast } from 'sonner'
 import { create } from 'zustand'
 
-interface PageState {
-  widgets: WidgetNode[]
-  selectedId: string | null
-  selectedWidget: () => WidgetNode | null
+import type { IWidgetNode } from '#widgets/types'
+import { getWidgets } from '#widgets/helpers'
+import { storageService } from '@/services/storage'
 
-  addWidget: (widget: WidgetNode) => void
+export interface WidgetsState {
+  widgets: IWidgetNode[]
+  addWidget: (widget: IWidgetNode) => void
   removeWidget: (id: string) => void
-  setWidgets: (widgets: WidgetNode[]) => void
+  updateWidget: (widget: IWidgetNode) => void
+  setWidgets: (widgets: IWidgetNode[]) => void
   resetWidgets: () => void
-  setSelectedId: (id: string) => void
+
+  activeId: string | null
+  setActiveId: (id: string) => void
 }
 
-const useWidgetsStore = create<PageState>()((set, get) => {
-  let widgets: WidgetNode[] = []
-  const json = storage.get(S_N_WIDGET)
-  if (json) {
-    const ret = widgetsSchema.safeParse(json)
-    if (ret.success) {
-      widgets = ret.data
-    } else {
-      console.error(ret.error)
-      setTimeout(() => {
-        toast.error(i18n.t('message.parseError'), {
-          position: 'top-center',
-        })
-      }, 100)
-    }
-  } else {
-    // initial data
-    widgets = createDefaultData()
-  }
-  const selectedId = widgets.length ? widgets[0].id : null
+export const useWidgetsStore = create<WidgetsState>()(set => {
+  const widgets = getWidgets()
+  const activeId = widgets.length ? widgets[0].id : null
 
   return {
     widgets,
-    selectedId,
-    selectedWidget: () => {
-      const { widgets, selectedId } = get()
-      return widgets.find(item => item.id === selectedId) || null
-    },
-
-    addWidget: (widget: WidgetNode) => {
-      set(({ selectedId, widgets }) => {
+    addWidget: (widget: IWidgetNode) => {
+      set(({ activeId, widgets }) => {
         const newWidgets = [...widgets]
-        if (!selectedId) {
+        if (!activeId) {
           newWidgets.push(widget)
         } else {
-          const index = widgets.findIndex(item => item.id === selectedId)
+          const index = widgets.findIndex(item => item.id === activeId)
           if (index === -1) {
             newWidgets.push(widget)
           } else {
             newWidgets.splice(index + 1, 0, widget)
           }
         }
-        storage.set(S_N_WIDGET, newWidgets)
         return {
           widgets: newWidgets,
-          selectedId: widget.id,
+          activeId: widget.id,
         }
       })
     },
@@ -72,7 +45,7 @@ const useWidgetsStore = create<PageState>()((set, get) => {
       set(({ widgets }) => {
         const index = widgets.findIndex(item => item.id === id)
         const newWidgets = widgets.filter(widget => widget.id !== id)
-        const selectedId =
+        const activeId =
           newWidgets.length === 0
             ? null // Last one deleted
             : newWidgets.length > index
@@ -80,44 +53,39 @@ const useWidgetsStore = create<PageState>()((set, get) => {
               : newWidgets.length === index
                 ? newWidgets[index - 1].id // Deleted the last one
                 : null
-        storage.set(S_N_WIDGET, newWidgets)
         return {
           widgets: newWidgets,
-          selectedId,
+          activeId,
         }
       })
     },
-    setWidgets: (widgets: WidgetNode[]) => {
+    updateWidget: (widget: IWidgetNode) => {
+      set(({ widgets }) => {
+        return {
+          widgets: widgets.map(item => (item.id === widget.id ? widget : item)),
+        }
+      })
+    },
+    setWidgets: (widgets: IWidgetNode[]) => {
       set({ widgets })
-      storage.set(S_N_WIDGET, widgets)
     },
     resetWidgets: () => {
-      set({ widgets: [], selectedId: null })
-      storage.remove(S_N_WIDGET)
+      set({ widgets: [], activeId: null })
     },
-    setSelectedId: (id: string) => set({ selectedId: id }),
+
+    activeId,
+    setActiveId: (id: string) => set({ activeId: id }),
   }
 })
 
 /**
- * auto scroll selected widget into view
+ * persist widgets change
  */
-useWidgetsStore.subscribe((state, prevState) => {
-  const { selectedId } = state
-  if (!selectedId) return
-  if (selectedId === prevState.selectedId) return
-
-  // wait react render, or use hooks but more complex
-  setTimeout(() => {
-    const element = document.getElementById(selectedId)
-    if (!element) return
-
-    const rect = element.getBoundingClientRect()
-    const inView = rect.top >= 68 && rect.bottom <= window.innerHeight - 16
-    if (!inView) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
-    }
-  })
+useWidgetsStore.subscribe((state: WidgetsState) => {
+  const { widgets } = state
+  if (!widgets || widgets.length === 0) {
+    storageService.removeWidgets()
+    return
+  }
+  storageService.setWidgets(widgets)
 })
-
-export { useWidgetsStore }
