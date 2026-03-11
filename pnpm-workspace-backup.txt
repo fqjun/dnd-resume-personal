@@ -4,3 +4,5 @@ onlyBuiltDependencies:
   - '@tailwindcss/oxide'
   - '@vercel/speed-insights'
   - esbuild
+
+  # 之后有需要则需改回：pnpm-workspace.yam
