@@ -1,0 +1,226 @@
+[
+  {
+    "type": "BasicInfo",
+    "id": "m5nh7g2t_c08t",
+    "data": {
+      "propsData": {
+        "avatarUrl": "/avatar2.jpg",
+        "avatarSize": 90,
+        "avatarRound": false,
+        "name": "伍晁均",
+        "jobTitle": "算法工程师",
+        "linksGroup": [
+          [
+            {
+              "href": "",
+              "content": "18903001097",
+              "icon": "phone"
+            },
+            {
+              "href": "https://github.com/",
+              "content": "工作经验：3年",
+              "icon": "link"
+            },
+            {
+              "href": "https://github.com/",
+              "content": "CJun_W@163.com",
+              "icon": "mail"
+            }
+          ],
+          [],
+          []
+        ]
+      },
+      "styleData": {
+        "marginTop": 0,
+        "marginBottom": 0
+      }
+    }
+  },
+  {
+    "type": "TitleSection",
+    "id": "mn6w11ei_4ojk",
+    "data": {
+      "propsData": {
+        "title": "个人优势"
+      },
+      "styleData": {
+        "marginTop": 2,
+        "marginBottom": 6
+      }
+    }
+  },
+  {
+    "type": "TextContent",
+    "id": "mn6w1gc7_l60g",
+    "data": {
+      "propsData": {
+        "content": "<h2>具备机器人感知控制（视觉伺服、导航建图）与智能决策（模仿/强化学习、端侧大模型部署）两大方向的原理样机开发能力，擅长快速验证技术可行性并交付功能完整的原理样机，能够为产品从样机走向量产提供扎实的技术预研基础与跨模块整合经验。</h2>"
+      },
+      "styleData": {
+        "marginTop": 6,
+        "marginBottom": 6
+      }
+    }
+  },
+  {
+    "type": "TitleSection",
+    "id": "m5nhbbzu_29xe",
+    "data": {
+      "propsData": {
+        "title": "工作经历"
+      },
+      "styleData": {
+        "marginTop": 2,
+        "marginBottom": 6
+      }
+    }
+  },
+  {
+    "type": "ExperienceTime",
+    "id": "mmlq1c61_u9xm",
+    "data": {
+      "propsData": {
+        "title": "徕福机器人（深圳）有限公司——嵌入式算法工程师",
+        "dateRange": "2025/07 - 2025/12"
+      },
+      "styleData": {
+        "marginTop": 8,
+        "marginBottom": 14
+      }
+    }
+  },
+  {
+    "type": "TextContent",
+    "id": "mmlqbbd1_m9b5",
+    "data": {
+      "propsData": {
+        "content": "<h2><strong>1. 端侧多模态大模型量化部署</strong></h2><hr><p><strong>项目描述</strong>：针对边缘计算场景，完成视觉-语言模型（VLM）及视觉-语言-动作模型（VLA）在多硬件平台的轻量化部署与性能优化。</p><ul><li><p><strong>地瓜机器人 S100P 平台：</strong>完成 SmolVLM 模型的 INT8 量化部署与推理优化，实现端侧实时视觉理解能力。</p></li><li><p><strong>高通骁龙平台：</strong>完成 LLaVA、Qwen-VL 等多款开源 VLM 模型的 NPU 适配与精度校准；主导自研 VLA 模型的量化-部署流程。</p></li></ul><h2><strong>2. 基于模仿学习与强化学习的机械臂灵巧操作</strong></h2><hr><p><strong>项目描述</strong>：面向家庭服务场景，构建多模态感知-决策-控制闭环，实现机械臂对多样化物体的精准抓取与放置。</p><ul><li><p><strong>模仿学习（IL）：</strong>基于 SmolVLA 架构，构建视觉-语言-动作对齐数据集，训练端到端策略网络，支持自然语言指令驱动的多目标抓取与区域放置，泛化测试成功率 85%+。</p></li><li><p><strong>强化学习（RL）：</strong>设计 Hil-serl + SAC 分层强化学习框架，引入人类示范纠错机制（Human-in-the-loop），将高精密任务（套环、方块精准入格）的训练效率提升 3 倍。</p></li></ul><h2><strong>3. 基于 GenManim 的仿真数据引擎构建</strong></h2><hr><p><strong>项目描述</strong>：搭建高保真合成数据流水线，解决真机数据采集成本高、多样性不足的问题。</p><ul><li><p>基于 GenManim 框架集成 Isaac Sim 物理仿真环境，配置机械臂运动学模型。</p></li><li><p>利用关键路径点 Waypoint，结合 MoveIt 运动规划完成多样化抓取-放置轨迹合成。</p></li><li><p>实现场景级域随机化：光照、纹理、物体姿态、相机视角等多维度扰动。</p></li></ul>"
+      },
+      "styleData": {
+        "marginTop": 3,
+        "marginBottom": 6
+      }
+    }
+  },
+  {
+    "type": "ExperienceTime",
+    "id": "mmlpz6df_djpe",
+    "data": {
+      "propsData": {
+        "title": "自走科技（北京）有限公司——算法工程师",
+        "dateRange": "2023/03 - 2025/06"
+      },
+      "styleData": {
+        "marginTop": 8,
+        "marginBottom": 14
+      }
+    }
+  },
+  {
+    "type": "TextContent",
+    "id": "m6zy5ayd_2lcd",
+    "data": {
+      "propsData": {
+        "content": "<h2><strong>1. 六轴机械臂视觉伺服控制</strong></h2><hr><p><strong>项目描述</strong>：基于二维码定位的视觉伺服，控制机械臂在 1 分钟内完成一棵树的割胶任务。</p><ul><li><p><strong>视觉伺服控制：</strong>利用 Apriltag 和 OpenCV 进行二维码位姿解算，结合 Moveit 规划机械臂路径，使得机械臂在规避场景障碍的同时到达目标位置，并对机械臂割胶姿态进行优化。</p></li><li><p><strong>重建机械臂 URDF 文件及坐标系：</strong>依据 DH 表和 Matlab 计算矫正机械臂末端位姿信息。</p></li></ul><h2><strong>2. 六轴机械臂激光伺服控制</strong></h2><hr><p><strong>项目描述</strong>：负责激光伺服控制项目，协同激光传感器实现割胶刀沿割痕自主割胶。</p><ul><li><p><strong>手眼标定</strong>：采集相关的数据，通过标定算法对传感器和 TCP 的位姿变化关系进行标定。</p></li><li><p><strong>轨迹规划</strong>：采用三次样条插值算法对离散点插值补全，得到贴合割痕的轨迹。</p></li><li><p><strong>通讯模块</strong>：构建 TCP 通讯模块，以满足传感器和机械臂之间的 8ms 的控制频率需求。</p></li></ul><h2><strong>3. 履带机器人的导航定位与建图</strong></h2><hr><p><strong>项目描述</strong>：利用 cartographer 对现场进行导航定位与建图，实现机器人在胶园内的自主导航功能。</p><ul><li><p><strong>建图</strong>：建图时记录 IMU 和激光雷达数据生成地图，并按需修改。</p></li><li><p><strong>定位</strong>：定位中通过数据进行位姿估计，将控制误差控制在 30cm 以内。</p></li><li><p><strong>导航</strong>：导航采用 A * 全局路径规划和 DWA、MPC 局部路径规划算法。</p></li></ul><h2><strong>4. 基于模仿学习的六轴机械臂控制</strong></h2><hr><p><strong>项目描述</strong>：基于 Aloha 的框架，在自行设计的 6 轴机械臂上实现挂件的挂载动作。</p><ul><li><p><strong>模仿学习的仿真环境搭建</strong>：搭建 ROS+Mujoco 仿真环境，进行基本动作仿真测试与训练。</p></li><li><p><strong>机械臂夹取动作的训练</strong>：采集模仿端数据，与预训练动作联合训练，使机械臂完成挂载动作。</p></li></ul>"
+      },
+      "styleData": {
+        "marginTop": 3,
+        "marginBottom": 6
+      }
+    }
+  },
+  {
+    "type": "TitleSection",
+    "id": "m5nhamir_1miv",
+    "data": {
+      "propsData": {
+        "title": "教育经历"
+      },
+      "styleData": {
+        "marginTop": 2,
+        "marginBottom": 6
+      }
+    }
+  },
+  {
+    "type": "ExperienceTime",
+    "id": "m6zxxsjt_l8v7",
+    "data": {
+      "propsData": {
+        "title": "本科/华南理工大学广州学院",
+        "dateRange": "2018/09 - 2022/07"
+      },
+      "styleData": {
+        "marginTop": 0,
+        "marginBottom": 0
+      }
+    }
+  },
+  {
+    "type": "TitleSection",
+    "id": "m5nh7g2t_m1ad",
+    "data": {
+      "propsData": {
+        "title": "项目经历"
+      },
+      "styleData": {
+        "marginTop": 2,
+        "marginBottom": 6
+      }
+    }
+  },
+  {
+    "type": "ExperienceTime",
+    "id": "m5nh7g2t_xcji",
+    "data": {
+      "propsData": {
+        "title": "二十届 RoboMaster 机甲大师赛——算法组组长 / 步兵组算法负责人",
+        "dateRange": "2020/09 - 2021/06"
+      },
+      "styleData": {
+        "marginTop": 0,
+        "marginBottom": 10
+      }
+    }
+  },
+  {
+    "type": "TextContent",
+    "id": "m6zy2sub_8490",
+    "data": {
+      "propsData": {
+        "content": "<p><strong>项目内容</strong>：主要工作为研发自动打击目标的算法程序。</p><ul><li><p>担任步兵组视觉负责人，编写针对装甲板、能量机关等目标的击打算法。在实战中，3.5 秒内完成变速移动机关激活，并通过 Mnist 数字识别区分优先目标机器人，实现精准射击。</p></li><li><p>担任算法组组长，负责统筹整个赛季的整组进度、新人陪训、代码规范管理等，赛后组织代码开源，发布于比赛论坛，现仓库 star 数 39。</p></li></ul><p><strong>项目成绩</strong>：</p><ul><li><p>二十届全国大学生 ROBOMASTER 机甲大师赛对抗赛全国赛二等奖</p></li><li><p>二十届全国大学生 ROBOMASTER 机甲大师赛步兵单项赛 步兵竞速与智能射击 全国亚军</p></li></ul>"
+      },
+      "styleData": {
+        "marginTop": 0,
+        "marginBottom": 0
+      }
+    }
+  },
+  {
+    "type": "TitleSection",
+    "id": "m6zxxvjl_7jwa",
+    "data": {
+      "propsData": {
+        "title": "技能清单"
+      },
+      "styleData": {
+        "marginTop": 2,
+        "marginBottom": 6
+      }
+    }
+  },
+  {
+    "type": "TextContent",
+    "id": "m6zy0fun_giri",
+    "data": {
+      "propsData": {
+        "content": "<ul><li><p><strong>感知工具</strong>：使用过工业摄像头、双目深度摄像头等传感器，熟悉摄像头标定，在 2D 机器人感知领域经验丰富，熟悉雷达、激光传感器应用。</p></li><li><p><strong>研发工具</strong>：熟悉 Linux / C++ / Python / OpenCV / ROS / Git 及场景相关的可视化和测试软件。</p></li><li><p><strong>工程经验</strong>：擅长文档总结，对学习内容和项目过程进行详细记录，定期整理。具备快速学习能力，快速迭代并熟悉新接手项目。</p></li><li><p><strong>项目开源仓库</strong>：<a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://github.com/wildwolf-team/WolfVision.git\">https://github.com/wildwolf-team/WolfVision.git</a></p></li></ul>"
+      },
+      "styleData": {
+        "marginTop": 0,
+        "marginBottom": 10
+      }
+    }
+  }
+]
